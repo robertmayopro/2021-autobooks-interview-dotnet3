@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using GroceryStoreLibrary.Models;
-using GroceryStoreLibrary.Services;
 using GroceryStoreLibrary.Services.Customer;
 
 namespace GroceryStoreAPI.Controllers
@@ -30,6 +29,18 @@ namespace GroceryStoreAPI.Controllers
         public async Task<Customer> GetCustomerById(int id)
         {
             return await _customerService.GetCustomerById(id);
+        }
+
+        [HttpPost]
+        public async Task<Customer> CreateCustomer([FromBody] Customer newCustomer)
+        {
+            return await _customerService.AddCustomer(newCustomer);
+        }
+
+        [HttpPut]
+        public async Task<bool> UpdateCustomer([FromBody] Customer updatedCustomer)
+        {
+            return await _customerService.UpdateCustomer(updatedCustomer);
         }
     }
 }
