@@ -10,7 +10,5 @@ namespace GroceryStoreLibrary.Services.Repository
         public Task<T> Update<T>(string key, T entity);
 
 
-        public void Load();
-        public Task Persist();
     }
 }
