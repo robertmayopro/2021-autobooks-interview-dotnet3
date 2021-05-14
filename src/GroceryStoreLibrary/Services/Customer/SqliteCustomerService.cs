@@ -8,22 +8,22 @@ namespace GroceryStoreLibrary.Services.Customer
         //TODO: Alternate implementation
 
 
-        public async Task<Models.Customer[]> GetAllCustomers()
+        public Task<Models.Customer[]> GetAllCustomers()
         {
             throw new NotImplementedException();
         }
 
-        public async Task<Models.Customer> GetCustomerById(int id)
+        public Task<Models.Customer> GetCustomerById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<Models.Customer> AddCustomer(Models.Customer newCustomer)
+        public Task<Models.Customer> AddCustomer(Models.Customer newCustomer)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<bool> UpdateCustomer(Models.Customer customer)
+        public Task<bool> UpdateCustomer(Models.Customer customer)
         {
             throw new NotImplementedException();
         }
