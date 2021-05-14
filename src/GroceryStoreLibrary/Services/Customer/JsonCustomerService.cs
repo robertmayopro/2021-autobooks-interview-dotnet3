@@ -31,7 +31,7 @@ namespace GroceryStoreLibrary.Services.Customer
 
         public async Task<bool> UpdateCustomer(Models.Customer customer)
         {
-            var updated = await _dataSource.Create("customers", customer);
+            var updated = await _dataSource.Update("customers", customer);
             return updated != null;
         }
     }

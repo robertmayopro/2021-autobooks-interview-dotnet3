@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Reflection;
-using GroceryStoreLibrary.Services;
 using GroceryStoreLibrary.Services.Customer;
 using GroceryStoreLibrary.Services.Repository;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,21 +10,21 @@ namespace GroceryStoreAPI
     {
         public static void AddApplicationDependencies(this IServiceCollection services)
         {
-            IJsonDataSource jasonDataSource = GetDatabaseFile();
+            IJsonFile jsonFile = GetDatabaseFile();
 
-            services.AddSingleton<IJsonDataSource>(jasonDataSource);
+            services.AddSingleton<IJsonFile>(jsonFile);
+            services.AddSingleton<IJsonDataSource, JsonDataSource>();
             services.AddSingleton<ICustomerService, JsonCustomerService>();
         }
 
 
-        private static JsonFileDataSource GetDatabaseFile()
+        private static JsonFile GetDatabaseFile()
         {
-
             string binDir = GetBinDir();
             string fileName = "database.json";
             string filePath = Path.Combine(binDir, fileName);
 
-            JsonFileDataSource config = new JsonFileDataSource(filePath);
+            JsonFile config = new JsonFile(filePath);
             return config;
         }
 
