@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Reflection;
 using GroceryStoreLibrary.Services;
+using GroceryStoreLibrary.Services.Customer;
 using GroceryStoreLibrary.Services.Repository;
 using Microsoft.Extensions.DependencyInjection;
 

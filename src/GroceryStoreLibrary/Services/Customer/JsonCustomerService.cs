@@ -1,8 +1,7 @@
 ﻿using System.Threading.Tasks;
-using GroceryStoreLibrary.Models;
 using GroceryStoreLibrary.Services.Repository;
 
-namespace GroceryStoreLibrary.Services
+namespace GroceryStoreLibrary.Services.Customer
 {
     public class JsonCustomerService : ICustomerService
     {
@@ -15,22 +14,22 @@ namespace GroceryStoreLibrary.Services
             _dataSource = dataSource;
         }
 
-        public async Task<Customer[]> GetAllCustomers()
+        public async Task<Models.Customer[]> GetAllCustomers()
         {
-            return await _dataSource.Read<Customer>("$.customers");
+            return await _dataSource.Read<Models.Customer>("customers", "");
         }
 
-        public async Task<Customer> GetCustomerById(int id)
+        public async Task<Models.Customer> GetCustomerById(int id)
         {
-            return await _dataSource.ReadOne<Customer>("$.customers[?(@.id=={id)]");
+            return await _dataSource.ReadOne<Models.Customer>("customers", $"[?(@.id=={id})]");
         }
 
-        public async Task<Customer> AddCustomer(Customer newCustomer)
+        public async Task<Models.Customer> AddCustomer(Models.Customer newCustomer)
         {
             return await _dataSource.Create("customers", newCustomer);
         }
 
-        public async Task<bool> UpdateCustomer(Customer customer)
+        public async Task<bool> UpdateCustomer(Models.Customer customer)
         {
             var updated = await _dataSource.Create("customers", customer);
             return updated != null;

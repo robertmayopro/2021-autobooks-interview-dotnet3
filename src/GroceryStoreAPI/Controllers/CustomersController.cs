@@ -2,11 +2,12 @@
 using System.Threading.Tasks;
 using GroceryStoreLibrary.Models;
 using GroceryStoreLibrary.Services;
+using GroceryStoreLibrary.Services.Customer;
 
 namespace GroceryStoreAPI.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class CustomersController : ControllerBase
     {
         private readonly ICustomerService _customerService;
@@ -20,14 +21,13 @@ namespace GroceryStoreAPI.Controllers
 
 
         [HttpGet]
-        public async Task<Customer[]> Get()
+        public async Task<Customer[]> GetAllCustomers()
         {
             return await _customerService.GetAllCustomers();
         }
 
-        [HttpGet]
-        [Route("api/[controller]/{id}")]
-        public async Task<Customer> Get(int id)
+        [HttpGet("{id:int}")]
+        public async Task<Customer> GetCustomerById(int id)
         {
             return await _customerService.GetCustomerById(id);
         }

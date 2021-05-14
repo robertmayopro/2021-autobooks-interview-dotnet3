@@ -1,14 +1,13 @@
 ﻿using System.Threading.Tasks;
-using GroceryStoreLibrary.Models;
 
-namespace GroceryStoreLibrary.Services
+namespace GroceryStoreLibrary.Services.Customer
 {
     public interface ICustomerService
     {
-        public Task<Customer[]> GetAllCustomers();
-        public Task<Customer> GetCustomerById(int id);
+        public Task<Models.Customer[]> GetAllCustomers();
+        public Task<Models.Customer> GetCustomerById(int id);
 
-        public Task<Customer> AddCustomer(Customer newCustomer);
-        public Task<bool> UpdateCustomer(Customer customer);
+        public Task<Models.Customer> AddCustomer(Models.Customer newCustomer);
+        public Task<bool> UpdateCustomer(Models.Customer customer);
     }
 }

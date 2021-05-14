@@ -8,11 +8,11 @@ using Newtonsoft.Json;
 
 namespace GroceryStoreLibrary.Services.Repository
 {
-    public class JsonFileDataSource :IJsonDataSource
+    public class JsonFileDataSource : IJsonDataSource
     {
         private readonly string _fileName;
         private JsonDocument _data;
-        
+
         public JsonFileDataSource(string fileName)
         {
             _fileName = fileName;
@@ -24,15 +24,15 @@ namespace GroceryStoreLibrary.Services.Repository
             throw new NotImplementedException();
         }
 
-        public Task<T[]> Read<T>(string query)
+        public Task<T[]> Read<T>(string key, string query)
         {
-            var result = JsonPath.ExecutePath(query, _data);
-            return Task.FromResult( result.Select(x => JsonConvert.DeserializeObject<T>(x.GetRawText())).ToArray());
+            var result = JsonPath.ExecutePath($"$.{key}{query}", _data);
+            return Task.FromResult(result.SelectMany(Deserialize<T>).ToArray());
         }
 
-        public async Task<T> ReadOne<T>(string query)
+        public async Task<T> ReadOne<T>(string key, string query)
         {
-            var result = await Read<T>(query);
+            var result = await Read<T>(key, query);
             return result.FirstOrDefault();
         }
 
@@ -50,6 +50,17 @@ namespace GroceryStoreLibrary.Services.Repository
         public async Task Persist()
         {
             throw new NotImplementedException();
+        }
+
+        private T[] Deserialize<T>(JsonElement element)
+        {
+            if (element.ValueKind == JsonValueKind.Array)
+                return DeserializeObject<T[]>(element);
+            return new [] { DeserializeObject<T>(element) };
+        }
+        private T DeserializeObject<T>(JsonElement element)
+        {
+            return JsonConvert.DeserializeObject<T>(element.GetRawText());
         }
     }
 }
