@@ -5,7 +5,7 @@ namespace GroceryStoreLibrary.Services.Repository
 {
     public interface IJsonFile
     {
-        public JObject Load();
-        public Task Save();
+        public Task<JObject> LoadAsync();
+        public Task SaveAsync();
     }
 }

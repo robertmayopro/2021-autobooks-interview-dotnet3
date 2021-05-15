@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
 namespace GroceryStoreLibrary.Services.Customer
 {
+    [ExcludeFromCodeCoverage]
     public class SqliteCustomerService : ICustomerService
     {
         //TODO: Alternate implementation

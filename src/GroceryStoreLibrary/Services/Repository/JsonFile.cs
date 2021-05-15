@@ -15,21 +15,23 @@ namespace GroceryStoreLibrary.Services.Repository
             _fileName = fileName;
         }
 
-        public JObject Load()
+        public async Task<JObject> LoadAsync()
         {
-            string json = File.ReadAllText(_fileName);
+            string json = await File.ReadAllTextAsync(_fileName);
             return _json = JObject.Parse(json);
         }
 
-        public async Task Save()
+        public async Task SaveAsync()
         {
             // TODO: Thread Safety, concurrency
             // This reminds me of a story.
+
+            Directory.CreateDirectory(Path.GetDirectoryName(_fileName));
             if (File.Exists(_fileName)) File.Delete(_fileName);
             await using var fileStream = File.OpenWrite(_fileName);
             await using var textWriter = new StreamWriter(fileStream);
             using var writer = new JsonTextWriter(textWriter);
-            await _json.WriteToAsync(writer, null);
+            await _json.WriteToAsync(writer);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GroceryStoreLibrary.Models;
@@ -17,57 +18,63 @@ namespace GroceryStoreLibrary.Services.Repository
             )
         {
             _jsonFile = jsonFile;
-            _data = _jsonFile.Load();
+
+            var loadTask = _jsonFile.LoadAsync();
+            Task.WaitAll(loadTask);
+            _data = loadTask.Result;
         }
 
-        public async Task<T> Create<T>(string key, T entity)
-            where T : IEntity
+        public async Task<T> Create<T>(string tableName, T entity)
+            where T : class, IEntity
         {
-            JArray table = (JArray)_data.SelectTokens($"$.{key}").Single();
+            if (entity == null) throw new ArgumentNullException($"Cannot add null to '{tableName}'.", nameof(entity));
+
+            JArray table = (JArray)_data.SelectTokens($"$.{tableName}").SingleOrDefault();
+            if (table == null) throw new ArgumentException($"Table not found, '{tableName}'.", nameof(tableName));
 
             // TODO: Thread-safety, concurrency, pessimistic locking
-            int nextId = (table.SelectMany(Deserialize<T>).Select(x => x.Id).Max()) + 1;
+            int nextId = (Deserialize<T>(table).Select(x => x.Id).Max()) + 1;
             entity.Id = nextId;
             table.Add(JObject.Parse(JsonConvert.SerializeObject(entity)));
-            await _jsonFile.Save();
+            await _jsonFile.SaveAsync();
 
             return entity;
         }
 
-        public Task<T[]> Read<T>(string key, string query)
-            where T : IEntity
+        public Task<T[]> Read<T>(string tableName, string query)
+            where T : class, IEntity
         {
-            var result = _data.SelectTokens($"$.{key}{query}").ToArray();
+            JArray table = (JArray)_data.SelectTokens($"$.{tableName}").SingleOrDefault();
+            if (table == null) throw new ArgumentException($"Table not found, '{tableName}'.", nameof(tableName));
+
+            var result = _data.SelectTokens($"$.{tableName}{query}").ToArray();
             return Task.FromResult(result.SelectMany(Deserialize<T>).ToArray());
         }
 
-        public async Task<T> ReadOne<T>(string key, string query)
-            where T : IEntity
+        public async Task<T> ReadOne<T>(string tableName, string query)
+            where T : class, IEntity
         {
-            var result = await Read<T>(key, query);
+            var result = await Read<T>(tableName, query);
             return result.FirstOrDefault();
         }
 
-        public async Task<T> Update<T>(string key, T entity)
-            where T : IEntity
+        public async Task<T> Update<T>(string tableName, T entity)
+            where T : class, IEntity
         {
-            var existing = _data.SelectToken($"$.{key}[?(@.id == {entity.Id})]");
-            if (existing != null)
-            {
-                existing.Replace(JObject.Parse(JsonConvert.SerializeObject(entity)));
-            }
-            else
-            {
-                JArray table = (JArray)_data.SelectTokens($"$.{key}").Single();
-                table.Add(JObject.Parse(JsonConvert.SerializeObject(entity)));
-            }
+            JArray table = (JArray)_data.SelectTokens($"$.{tableName}").SingleOrDefault();
+            if (table == null) throw new ArgumentException($"Table not found, '{tableName}'.", nameof(tableName));
 
-            await _jsonFile.Save();
+            var existing = _data.SelectToken($"$.{tableName}[?(@.id == {entity.Id})]");
+            if (existing == null) throw new KeyNotFoundException($"No {tableName} found with id {entity.Id}'.");
+            
+            existing.Replace(JObject.Parse(JsonConvert.SerializeObject(entity)));
+            await _jsonFile.SaveAsync();
 
             return entity;
         }
 
         private T[] Deserialize<T>(JToken element)
+            where T : class, IEntity
         {
             if (element.Type == JTokenType.Array)
                 return element.ToObject<T[]>();
