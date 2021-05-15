@@ -26,6 +26,24 @@
         <member name="T:GroceryStoreLibrary.Services.Customer.CustomerService">
             <inheritdoc cref="T:GroceryStoreLibrary.Services.Customer.ICustomerService" />
         </member>
+        <member name="M:GroceryStoreLibrary.Services.Customer.CustomerService.#ctor(GroceryStoreLibrary.Services.Repository.IDataSource)">
+            <summary>
+            Creates a new instance of <see cref="T:GroceryStoreLibrary.Services.Customer.CustomerService" />
+            </summary>
+            <param name="dataSource">The source of data (repository).</param>
+        </member>
+        <member name="M:GroceryStoreLibrary.Services.Customer.CustomerService.GetAllCustomers">
+            <inheritdoc cref="T:GroceryStoreLibrary.Services.Customer.ICustomerService" />
+        </member>
+        <member name="M:GroceryStoreLibrary.Services.Customer.CustomerService.GetCustomerById(System.Int32)">
+            <inheritdoc cref="T:GroceryStoreLibrary.Services.Customer.ICustomerService" />
+        </member>
+        <member name="M:GroceryStoreLibrary.Services.Customer.CustomerService.AddCustomer(GroceryStoreLibrary.Models.Customer)">
+            <inheritdoc cref="T:GroceryStoreLibrary.Services.Customer.ICustomerService" />
+        </member>
+        <member name="M:GroceryStoreLibrary.Services.Customer.CustomerService.UpdateCustomer(GroceryStoreLibrary.Models.Customer)">
+            <inheritdoc cref="T:GroceryStoreLibrary.Services.Customer.ICustomerService" />
+        </member>
         <member name="T:GroceryStoreLibrary.Services.Customer.ICustomerService">
             <summary>
             Interface for customer-based operations
@@ -60,8 +78,45 @@
         </member>
         <member name="T:GroceryStoreLibrary.Services.Repository.IDataSource">
             <summary>
-            Represents a catalog of
+            Represents a catalog of entities.
             </summary>
+        </member>
+        <member name="M:GroceryStoreLibrary.Services.Repository.IDataSource.Create``1(System.String,``0)">
+            <summary>
+            Creates a new entity in the catalog.
+            </summary>
+            <typeparam name="T">The entity type</typeparam>
+            <param name="tableName">The table name which holds the entities</param>
+            <param name="entity">The entity to create.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GroceryStoreLibrary.Services.Repository.IDataSource.ReadOne``1(System.String,System.String)">
+            <summary>
+            Reads a single entity from the catalog.
+            </summary>
+            <typeparam name="T">The entity type</typeparam>
+            <param name="tableName">The table name which holds the entities</param>
+            <param name="query">The query used to retrieve the entity.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GroceryStoreLibrary.Services.Repository.IDataSource.Read``1(System.String,System.String)">
+            <summary>
+            Reads an array of entities from the catalog.
+            </summary>
+            <typeparam name="T">The entity type</typeparam>
+            <param name="tableName">The table name which holds the entities</param>
+            <param name="query">The query used to retrieve the entities.</param>
+            <returns>Returns information for the newly added entity.</returns>
+        </member>
+        <member name="M:GroceryStoreLibrary.Services.Repository.IDataSource.Update``1(System.String,``0)">
+            <summary>
+            Updates an existing entity in the catalog.
+            </summary>
+            <typeparam name="T">The entity type</typeparam>
+            <param name="tableName">The table name which holds the entities</param>
+            <param name="entity">The entity information to.</param>
+            <returns>Returns true if a successful update occurred. Otherwise, false.</returns>
+            <remarks>Uses the <see cref="P:IEntity.ID"/> to find the appropriate entity to update.</remarks>
         </member>
         <member name="T:GroceryStoreLibrary.Services.Repository.IJsonAccess">
             <summary>
@@ -79,6 +134,29 @@
             Persists <see cref="T:Newtonsoft.Json.Linq.JObject" /> back to source.
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:GroceryStoreLibrary.Services.Repository.JsonDataSource">
+            <summary>
+            JSON-specific data source.
+            </summary>
+        </member>
+        <member name="M:GroceryStoreLibrary.Services.Repository.JsonDataSource.#ctor(GroceryStoreLibrary.Services.Repository.IJsonAccess)">
+            <summary>
+            Creates an instance of a <see cref="T:GroceryStoreLibrary.Services.Repository.JsonDataSource"/>.
+            </summary>
+            <param name="jsonAccess">Loading and persistence mechanism to and from a JSON source</param>
+        </member>
+        <member name="M:GroceryStoreLibrary.Services.Repository.JsonDataSource.Create``1(System.String,``0)">
+            <inheritdoc cref="T:GroceryStoreLibrary.Services.Repository.IDataSource"/>
+        </member>
+        <member name="M:GroceryStoreLibrary.Services.Repository.JsonDataSource.Read``1(System.String,System.String)">
+            <inheritdoc cref="T:GroceryStoreLibrary.Services.Repository.IDataSource"/>
+        </member>
+        <member name="M:GroceryStoreLibrary.Services.Repository.JsonDataSource.ReadOne``1(System.String,System.String)">
+            <inheritdoc cref="T:GroceryStoreLibrary.Services.Repository.IDataSource"/>
+        </member>
+        <member name="M:GroceryStoreLibrary.Services.Repository.JsonDataSource.Update``1(System.String,``0)">
+            <inheritdoc cref="T:GroceryStoreLibrary.Services.Repository.IDataSource"/>
         </member>
         <member name="T:GroceryStoreLibrary.Services.Repository.JsonFile">
             <summary>

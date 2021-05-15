@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GroceryStoreAPI</name>
+    </assembly>
+    <members>
+        <member name="T:GroceryStoreAPI.Controllers.CustomersController">
+            <summary>
+            Actions for fetching/manipulating customer information.
+            </summary>
+        </member>
+        <member name="M:GroceryStoreAPI.Controllers.CustomersController.#ctor(GroceryStoreLibrary.Services.Customer.ICustomerService)">
+            <summary>
+            Creates a new instance of the controller.
+            </summary>
+            <param name="customerService"></param>
+        </member>
+        <member name="M:GroceryStoreAPI.Controllers.CustomersController.GetAllCustomers">
+            <summary>
+            Get all customers.
+            </summary>
+            <returns>Returns an array of <see cref="T:GroceryStoreLibrary.Models.Customer"/> objects.</returns>
+        </member>
+        <member name="M:GroceryStoreAPI.Controllers.CustomersController.GetCustomerById(System.Int32)">
+            <summary>
+            Get customer by customer ID.
+            </summary>
+            <param name="id">Customer ID</param>
+            <returns>Returns information for a single <see cref="T:GroceryStoreLibrary.Models.Customer" />.</returns>
+        </member>
+        <member name="M:GroceryStoreAPI.Controllers.CustomersController.AddCustomer(GroceryStoreLibrary.Models.Customer)">
+            <summary>
+            Adds a new customer.
+            </summary>
+            <param name="newCustomer">Customer to add</param>
+            <returns>Returns information for the newly added <see cref="T:GroceryStoreLibrary.Models.Customer" />.</returns>
+        </member>
+        <member name="M:GroceryStoreAPI.Controllers.CustomersController.UpdateCustomer(GroceryStoreLibrary.Models.Customer)">
+            <summary>
+            Updates an existing customer.
+            </summary>
+            <param name="updatedCustomer">Customer information to update</param>
+            <returns>Returns true if a successful update occurred. Otherwise, false.</returns>
+        </member>
+    </members>
+</doc>
