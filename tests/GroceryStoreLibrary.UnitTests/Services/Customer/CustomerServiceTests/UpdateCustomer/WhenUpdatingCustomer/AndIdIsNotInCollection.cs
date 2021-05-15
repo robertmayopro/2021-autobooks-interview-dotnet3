@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using NUnit.Framework;
 
-namespace GroceryStoreLibrary.UnitTests.Services.Customer.JsonCustomerServiceTests.UpdateCustomer.WhenUpdatingCustomer
+namespace GroceryStoreLibrary.UnitTests.Services.Customer.CustomerServiceTests.UpdateCustomer.WhenUpdatingCustomer
 {
     class AndIdIsNotInCollection : JsonCustomerServiceTestBase
     {

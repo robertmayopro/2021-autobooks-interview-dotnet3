@@ -10,11 +10,11 @@ namespace GroceryStoreAPI
     {
         public static void AddApplicationDependencies(this IServiceCollection services)
         {
-            IJsonFile jsonFile = GetDatabaseFile();
+            IJsonAccess jsonFile = GetDatabaseFile();
 
-            services.AddSingleton<IJsonFile>(jsonFile);
-            services.AddSingleton<IJsonDataSource, JsonDataSource>();
-            services.AddSingleton<ICustomerService, JsonCustomerService>();
+            services.AddSingleton<IJsonAccess>(jsonFile);
+            services.AddSingleton<IDataSource, JsonDataSource>();
+            services.AddSingleton<ICustomerService, CustomerService>();
         }
 
 

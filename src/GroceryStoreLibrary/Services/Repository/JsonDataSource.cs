@@ -8,13 +8,13 @@ using Newtonsoft.Json.Linq;
 
 namespace GroceryStoreLibrary.Services.Repository
 {
-    public class JsonDataSource : IJsonDataSource
+    public class JsonDataSource : IDataSource
     {
-        private readonly IJsonFile _jsonFile;
+        private readonly IJsonAccess _jsonFile;
         private readonly JObject _data;
 
         public JsonDataSource(
-            IJsonFile jsonFile
+            IJsonAccess jsonFile
             )
         {
             _jsonFile = jsonFile;

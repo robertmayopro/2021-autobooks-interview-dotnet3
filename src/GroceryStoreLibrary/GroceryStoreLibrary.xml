@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GroceryStoreLibrary</name>
+    </assembly>
+    <members>
+        <member name="T:GroceryStoreLibrary.Models.Customer">
+            <summary>
+            Represents a registered customer.
+            </summary>
+        </member>
+        <member name="P:GroceryStoreLibrary.Models.Customer.Id">
+            <summary>Customer ID</summary>
+        </member>
+        <member name="P:GroceryStoreLibrary.Models.Customer.Name">
+            <summary>Customer Name</summary>
+        </member>
+        <member name="T:GroceryStoreLibrary.Models.IEntity">
+            <summary>
+            Every database entity (record) shares this common interface.
+            </summary>
+        </member>
+        <member name="P:GroceryStoreLibrary.Models.IEntity.Id">
+            <summary>Record identifier</summary>
+        </member>
+        <member name="T:GroceryStoreLibrary.Services.Customer.CustomerService">
+            <inheritdoc cref="T:GroceryStoreLibrary.Services.Customer.ICustomerService" />
+        </member>
+        <member name="T:GroceryStoreLibrary.Services.Customer.ICustomerService">
+            <summary>
+            Interface for customer-based operations
+            </summary>
+        </member>
+        <member name="M:GroceryStoreLibrary.Services.Customer.ICustomerService.GetAllCustomers">
+            <summary>
+            Gets all customers from the repository.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GroceryStoreLibrary.Services.Customer.ICustomerService.GetCustomerById(System.Int32)">
+            <summary>
+            Gets a single customer by their customer ID.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GroceryStoreLibrary.Services.Customer.ICustomerService.AddCustomer(GroceryStoreLibrary.Models.Customer)">
+            <summary>
+            Adds a new customer to the repository.
+            </summary>
+            <param name="newCustomer">The customer to add.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GroceryStoreLibrary.Services.Customer.ICustomerService.UpdateCustomer(GroceryStoreLibrary.Models.Customer)">
+            <summary>
+            Updates a customer within the repository
+            </summary>
+            <param name="customer">Customer information to update.</param>
+            <returns></returns>
+        </member>
+        <member name="T:GroceryStoreLibrary.Services.Repository.IDataSource">
+            <summary>
+            Represents a catalog of
+            </summary>
+        </member>
+        <member name="T:GroceryStoreLibrary.Services.Repository.IJsonAccess">
+            <summary>
+            Provides a loading and persistence mechanism to and from a JSON source.
+            </summary>
+        </member>
+        <member name="M:GroceryStoreLibrary.Services.Repository.IJsonAccess.LoadAsync">
+            <summary>
+            Load JSON from source and pars into a <see cref="T:Newtonsoft.Json.Linq.JObject"/>.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GroceryStoreLibrary.Services.Repository.IJsonAccess.SaveAsync">
+            <summary>
+            Persists <see cref="T:Newtonsoft.Json.Linq.JObject" /> back to source.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:GroceryStoreLibrary.Services.Repository.JsonFile">
+            <summary>
+            Loads JSON data from a file and persists it back to that file.
+            </summary>
+        </member>
+        <member name="M:GroceryStoreLibrary.Services.Repository.JsonFile.#ctor(System.String)">
+            <summary>
+            Creates a new instance of a JsonFile, loading from and saving to the specified path.
+            </summary>
+            <param name="fileName">Path on isk where the JSON file is located.</param>
+        </member>
+        <member name="M:GroceryStoreLibrary.Services.Repository.JsonFile.LoadAsync">
+            <summary>
+            Loads JSON Data from file.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GroceryStoreLibrary.Services.Repository.JsonFile.SaveAsync">
+            <summary>
+            Saves JSON data to file
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

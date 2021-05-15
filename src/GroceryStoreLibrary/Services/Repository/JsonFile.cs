@@ -5,22 +5,37 @@ using Newtonsoft.Json.Linq;
 
 namespace GroceryStoreLibrary.Services.Repository
 {
-    public class JsonFile : IJsonFile
+    /// <summary>
+    /// Loads JSON data from a file and persists it back to that file.
+    /// </summary>
+    public class JsonFile : IJsonAccess
     {
         private readonly string _fileName;
         private JObject _json;
 
+        /// <summary>
+        /// Creates a new instance of a JsonFile, loading from and saving to the specified path.
+        /// </summary>
+        /// <param name="fileName">Path on isk where the JSON file is located.</param>
         public JsonFile(string fileName)
         {
             _fileName = fileName;
         }
 
+        /// <summary>
+        /// Loads JSON Data from file.
+        /// </summary>
+        /// <returns></returns>
         public async Task<JObject> LoadAsync()
         {
             string json = await File.ReadAllTextAsync(_fileName);
             return _json = JObject.Parse(json);
         }
 
+        /// <summary>
+        /// Saves JSON data to file
+        /// </summary>
+        /// <returns></returns>
         public async Task SaveAsync()
         {
             // TODO: Thread Safety, concurrency

@@ -3,7 +3,10 @@ using GroceryStoreLibrary.Models;
 
 namespace GroceryStoreLibrary.Services.Repository
 {
-    public interface IJsonDataSource
+    /// <summary>
+    /// Represents a catalog of
+    /// </summary>
+    public interface IDataSource
     {
         public Task<T> Create<T>(string tableName, T entity)
             where T : class, IEntity;

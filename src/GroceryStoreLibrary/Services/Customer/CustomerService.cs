@@ -3,12 +3,13 @@ using GroceryStoreLibrary.Services.Repository;
 
 namespace GroceryStoreLibrary.Services.Customer
 {
-    public class JsonCustomerService : ICustomerService
+    /// <inheritdoc cref="ICustomerService" />
+    public class CustomerService : ICustomerService
     {
-        private readonly IJsonDataSource _dataSource;
+        private readonly IDataSource _dataSource;
 
-        public JsonCustomerService(
-            IJsonDataSource dataSource
+        public CustomerService(
+            IDataSource dataSource
             )
         {
             _dataSource = dataSource;

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using NUnit.Framework;
 
-namespace GroceryStoreLibrary.UnitTests.Services.Customer.JsonCustomerServiceTests.UpdateCustomer.WhenUpdatingCustomer
+namespace GroceryStoreLibrary.UnitTests.Services.Customer.CustomerServiceTests.UpdateCustomer.WhenUpdatingCustomer
 {
     class AndIdIsInCollection : JsonCustomerServiceTestBase
     {

@@ -23,7 +23,7 @@ namespace GroceryStoreLibrary.UnitTests.Services.Repository.JsonDataSourceTests
 
         protected virtual JsonDataSource SetUpSystemUnderTest()
         {
-            var jsonFile = new Mock<IJsonFile>();
+            var jsonFile = new Mock<IJsonAccess>();
             jsonFile.Setup(x => x.LoadAsync())
                 .ReturnsAsync(JObject.Parse(Utils.GetDatabaseSeedJson()));
             return new JsonDataSource(jsonFile.Object);
