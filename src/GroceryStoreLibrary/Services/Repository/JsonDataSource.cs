@@ -11,7 +11,7 @@ namespace GroceryStoreLibrary.Services.Repository
     /// <summary>
     /// JSON-specific data source.
     /// </summary>
-    public class JsonDataSource : IDataSource
+    public class JsonDataSource : IJsonDataSource
     {
         private readonly IJsonAccess _jsonAccess;
         private readonly JObject _data;

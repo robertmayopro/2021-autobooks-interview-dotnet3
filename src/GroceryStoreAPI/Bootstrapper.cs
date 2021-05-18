@@ -13,8 +13,8 @@ namespace GroceryStoreAPI
             IJsonAccess jsonFile = GetDatabaseFile();
 
             services.AddSingleton<IJsonAccess>(jsonFile);
-            services.AddSingleton<IDataSource, JsonDataSource>();
-            services.AddSingleton<ICustomerService, CustomerService>();
+            services.AddSingleton<IJsonDataSource, JsonDataSource>();
+            services.AddSingleton<ICustomerService, JsonCustomerService>();
         }
 
 

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using NUnit.Framework;
 
-namespace GroceryStoreLibrary.UnitTests.Services.Customer.CustomerServiceTests.GetAllCustomers
+namespace GroceryStoreLibrary.UnitTests.Services.Customer.JsonCustomerServiceTests.GetAllCustomers
 {
     class WhenGettingAllCustomers : JsonCustomerServiceTestBase
     {

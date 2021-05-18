@@ -1,7 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 
-namespace GroceryStoreLibrary.UnitTests.Services.Customer.CustomerServiceTests.AddCustomer.WhenAddingCustomer
+namespace GroceryStoreLibrary.UnitTests.Services.Customer.JsonCustomerServiceTests.AddCustomer.WhenAddingCustomer
 {
     class AndCustomerIsNull : JsonCustomerServiceTestBase
     {

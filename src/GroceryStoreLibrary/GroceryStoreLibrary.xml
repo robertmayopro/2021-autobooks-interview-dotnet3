@@ -23,27 +23,6 @@
         <member name="P:GroceryStoreLibrary.Models.IEntity.Id">
             <summary>Record identifier</summary>
         </member>
-        <member name="T:GroceryStoreLibrary.Services.Customer.CustomerService">
-            <inheritdoc cref="T:GroceryStoreLibrary.Services.Customer.ICustomerService" />
-        </member>
-        <member name="M:GroceryStoreLibrary.Services.Customer.CustomerService.#ctor(GroceryStoreLibrary.Services.Repository.IDataSource)">
-            <summary>
-            Creates a new instance of <see cref="T:GroceryStoreLibrary.Services.Customer.CustomerService" />
-            </summary>
-            <param name="dataSource">The source of data (repository).</param>
-        </member>
-        <member name="M:GroceryStoreLibrary.Services.Customer.CustomerService.GetAllCustomers">
-            <inheritdoc cref="T:GroceryStoreLibrary.Services.Customer.ICustomerService" />
-        </member>
-        <member name="M:GroceryStoreLibrary.Services.Customer.CustomerService.GetCustomerById(System.Int32)">
-            <inheritdoc cref="T:GroceryStoreLibrary.Services.Customer.ICustomerService" />
-        </member>
-        <member name="M:GroceryStoreLibrary.Services.Customer.CustomerService.AddCustomer(GroceryStoreLibrary.Models.Customer)">
-            <inheritdoc cref="T:GroceryStoreLibrary.Services.Customer.ICustomerService" />
-        </member>
-        <member name="M:GroceryStoreLibrary.Services.Customer.CustomerService.UpdateCustomer(GroceryStoreLibrary.Models.Customer)">
-            <inheritdoc cref="T:GroceryStoreLibrary.Services.Customer.ICustomerService" />
-        </member>
         <member name="T:GroceryStoreLibrary.Services.Customer.ICustomerService">
             <summary>
             Interface for customer-based operations
@@ -75,6 +54,28 @@
             </summary>
             <param name="customer">Customer information to update.</param>
             <returns></returns>
+        </member>
+        <member name="T:GroceryStoreLibrary.Services.Customer.JsonCustomerService">
+            <inheritdoc cref="T:GroceryStoreLibrary.Services.Customer.ICustomerService" />
+            <remarks>This object has knowledge of how to retrieve/manipulate customers, given a JSON data source.</remarks>
+        </member>
+        <member name="M:GroceryStoreLibrary.Services.Customer.JsonCustomerService.#ctor(GroceryStoreLibrary.Services.Repository.IJsonDataSource)">
+            <summary>
+            Creates a new instance of <see cref="T:GroceryStoreLibrary.Services.Customer.JsonCustomerService" />
+            </summary>
+            <param name="dataSource">The source of data (repository).</param>
+        </member>
+        <member name="M:GroceryStoreLibrary.Services.Customer.JsonCustomerService.GetAllCustomers">
+            <inheritdoc cref="T:GroceryStoreLibrary.Services.Customer.ICustomerService" />
+        </member>
+        <member name="M:GroceryStoreLibrary.Services.Customer.JsonCustomerService.GetCustomerById(System.Int32)">
+            <inheritdoc cref="T:GroceryStoreLibrary.Services.Customer.ICustomerService" />
+        </member>
+        <member name="M:GroceryStoreLibrary.Services.Customer.JsonCustomerService.AddCustomer(GroceryStoreLibrary.Models.Customer)">
+            <inheritdoc cref="T:GroceryStoreLibrary.Services.Customer.ICustomerService" />
+        </member>
+        <member name="M:GroceryStoreLibrary.Services.Customer.JsonCustomerService.UpdateCustomer(GroceryStoreLibrary.Models.Customer)">
+            <inheritdoc cref="T:GroceryStoreLibrary.Services.Customer.ICustomerService" />
         </member>
         <member name="T:GroceryStoreLibrary.Services.Repository.IDataSource">
             <summary>
@@ -134,6 +135,9 @@
             Persists <see cref="T:Newtonsoft.Json.Linq.JObject" /> back to source.
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:GroceryStoreLibrary.Services.Repository.IJsonDataSource">
+            <inheritdoc cref="T:GroceryStoreLibrary.Services.Repository.IDataSource"/>>
         </member>
         <member name="T:GroceryStoreLibrary.Services.Repository.JsonDataSource">
             <summary>

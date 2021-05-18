@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using NUnit.Framework;
 
-namespace GroceryStoreLibrary.UnitTests.Services.Customer.CustomerServiceTests.GetCustomerById
+namespace GroceryStoreLibrary.UnitTests.Services.Customer.JsonCustomerServiceTests.GetCustomerById
 {
     class WhenGettingANonExistingCustomer : JsonCustomerServiceTestBase
     {

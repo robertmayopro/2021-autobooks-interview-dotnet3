@@ -4,16 +4,17 @@ using GroceryStoreLibrary.Services.Repository;
 namespace GroceryStoreLibrary.Services.Customer
 {
     /// <inheritdoc cref="ICustomerService" />
-    public class CustomerService : ICustomerService
+    /// <remarks>This object has knowledge of how to retrieve/manipulate customers, given a JSON data source.</remarks>
+    public class JsonCustomerService : ICustomerService
     {
         private readonly IDataSource _dataSource;
 
         /// <summary>
-        /// Creates a new instance of <see cref="CustomerService" />
+        /// Creates a new instance of <see cref="JsonCustomerService" />
         /// </summary>
         /// <param name="dataSource">The source of data (repository).</param>
-        public CustomerService(
-            IDataSource dataSource
+        public JsonCustomerService(
+            IJsonDataSource dataSource
             )
         {
             _dataSource = dataSource;

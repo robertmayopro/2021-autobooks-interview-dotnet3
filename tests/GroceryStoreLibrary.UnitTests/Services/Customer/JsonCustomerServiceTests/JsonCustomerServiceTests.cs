@@ -3,7 +3,7 @@ using GroceryStoreLibrary.Services.Repository;
 using Moq;
 using Newtonsoft.Json.Linq;
 
-namespace GroceryStoreLibrary.UnitTests.Services.Customer.CustomerServiceTests
+namespace GroceryStoreLibrary.UnitTests.Services.Customer.JsonCustomerServiceTests
 {
     abstract class JsonCustomerServiceTestBase
     {
@@ -16,21 +16,15 @@ namespace GroceryStoreLibrary.UnitTests.Services.Customer.CustomerServiceTests
             public const int INVALID_ID = 46;
         }
 
-        protected virtual CustomerService SetUpSystemUnderTest()
+        protected virtual JsonCustomerService SetUpSystemUnderTest()
         {
             var jsonFile = new Mock<IJsonAccess>();
             jsonFile.Setup(x => x.LoadAsync())
                 .ReturnsAsync(JObject.Parse(Utils.GetDatabaseSeedJson()));
             var dataSource = new JsonDataSource(jsonFile.Object);
-            return new CustomerService(dataSource);
+            return new JsonCustomerService(dataSource);
         }
     }
-
-    namespace AddCustomer
-    {
-        namespace WhenUpdatingCustomer
-        {
-        }
-    }
+    
 }
 
